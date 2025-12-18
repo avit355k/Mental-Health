@@ -8,7 +8,8 @@ const app = express();
 
 // CORS CONFIG
 const allowedOrigins = [
-  "http://localhost:5173",               // frontend localhost
+  "http://localhost:5173",  // frontend localhost
+  "https://calmbridge.vercel.app"    // production frontend         
 ];
 
 app.use(
