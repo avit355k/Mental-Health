@@ -5,9 +5,11 @@ import json
 import pickle
 import numpy as np
 import nltk
+
 nltk.download('punkt')
 nltk.download('punkt_tab')
 nltk.download('wordnet')
+
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
@@ -22,11 +24,17 @@ classes = pickle.load(open('classes.pkl', 'rb'))
 app = Flask(__name__)
 CORS(
     app,
-    resources={r"/*": {"origins": "*"}},
-    supports_credentials=True
+    resources={
+        r"/chatbot": {
+            "origins": [
+                "https://calmbridge.vercel.app",
+                "http://localhost:5173"
+            ]
+        }
+    },
+    methods=["POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
 )
-
-
 
 # Create bag of words
 def clean_up_sentence(sentence):
@@ -83,7 +91,4 @@ def chatbot_response():
 def home():
     return jsonify({"status": "Chatbot Backend Running"})
 
-
-if __name__ == "__main__":
-    app.run(debug=False, use_reloader=False)
 
