@@ -67,13 +67,15 @@ const Chatbot = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/chatbot", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userText }),
-      });
+      const res = await fetch(
+        "https://mental-health-chatbot-xy6b.onrender.com/chatbot",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userText }),
+        });
 
       const data = await res.json();
 
@@ -132,8 +134,8 @@ const Chatbot = () => {
 
                 <div
                   className={`max-w-[75%] px-4 py-2 rounded-lg text-sm ${msg.sender === "user"
-                      ? "bg-emerald-600 text-white"
-                      : "bg-gray-200 text-gray-800"
+                    ? "bg-emerald-600 text-white"
+                    : "bg-gray-200 text-gray-800"
                     }`}
                 >
                   {msg.text}

@@ -20,7 +20,12 @@ words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 
 app = Flask(__name__)
-CORS(app)
+CORS(
+    app,
+    resources={r"/*": {"origins": "*"}},
+    supports_credentials=True
+)
+
 
 
 # Create bag of words
@@ -62,8 +67,11 @@ def get_response(intents_list, intents_json):
             return random.choice(intent['responses'])
 
 
-@app.route('/chatbot', methods=['POST'])
+@app.route('/chatbot', methods=['POST', 'OPTIONS'])
 def chatbot_response():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "ok"}), 200
+
     user_message = request.json.get("message")
 
     ints = predict_class(user_message)
