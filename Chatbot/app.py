@@ -5,6 +5,9 @@ import json
 import pickle
 import numpy as np
 import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
