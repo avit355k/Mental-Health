@@ -38,7 +38,7 @@ const Breathing = () => {
       { name: "Hold", duration: type.hold || 0 },
       { name: "Exhale", duration: type.exhale },
       { name: "Hold", duration: type.hold2 || 0 },
-    ].filter(s => s.duration > 0);
+    ].filter((s) => s.duration > 0);
 
     let currentIdx = 0;
 
@@ -53,7 +53,7 @@ const Breathing = () => {
         if (currentIdx < sequence.length) {
           executePhase();
         } else {
-          runCycle(type); // Restart loop
+          runCycle(type);
         }
       }, current.duration * 1000);
     };
@@ -81,59 +81,117 @@ const Breathing = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4 font-sans text-slate-800">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-emerald-500">Relaxation & Breathing</h1>
-        <p className="text-gray-500 text-lg">Calm your mind with guided breathing exercises</p>
-      </div>
+    <section
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat text-white"
+      style={{ backgroundImage: "url('/night.jpg')" }}
+    >
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Breathing Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-        {breathingTypes.map((type) => (
-          <div key={type.id} className="bg-white rounded-3xl shadow-xl shadow-gray-200 border border-gray-100 p-10 flex flex-col items-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-1">{type.title}</h2>
-            <p className="text-gray-400 text-sm mb-8">{type.subtitle}</p>
+      <div className="relative z-10 flex flex-col items-center py-10 sm:py-12 px-4 sm:px-6 font-sans">
+        {/* Header */}
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold text-emerald-400 mb-2">
+            Relaxation & Breathing
+          </h1>
+          <p className="text-white/70 text-base sm:text-lg">
+            Calm your mind with guided breathing exercises
+          </p>
+        </div>
 
-            <div className="relative flex items-center justify-center mb-10">
-              <div className={`w-48 h-48 rounded-full border-4 flex flex-col items-center justify-center transition-all duration-1000 ${active?.id === type.id && playing ? 'border-emerald-500 scale-110' : 'border-gray-200'}`}>
-                <span className="text-5xl font-bold text-gray-700">
-                  {active?.id === type.id && playing ? timeLeft : type.inhale}
-                </span>
-                <span className="text-gray-400 font-medium uppercase tracking-widest text-xs mt-1">
-                  {active?.id === type.id && playing ? phase : "Ready"}
-                </span>
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full max-w-5xl">
+          {breathingTypes.map((type) => (
+            <div
+              key={type.id}
+              className="
+                backdrop-blur-xl bg-white/10
+                border border-white/20
+                rounded-3xl
+                p-6 sm:p-8 lg:p-10
+                shadow-2xl
+              "
+            >
+              <h2 className="text-xl sm:text-2xl font-bold mb-1">
+                {type.title}
+              </h2>
+              <p className="text-white/60 text-sm mb-6 sm:mb-8">
+                {type.subtitle}
+              </p>
+
+              {/* Breathing Circle */}
+              <div className="flex justify-center mb-8 sm:mb-10">
+                <div
+                  className={`
+                    w-36 h-36 sm:w-44 sm:h-44 lg:w-48 lg:h-48
+                    rounded-full border-4
+                    flex flex-col items-center justify-center
+                    transition-all duration-1000
+                    ${
+                      active?.id === type.id && playing
+                        ? "border-emerald-400 scale-110"
+                        : "border-white/30"
+                    }
+                  `}
+                >
+                  <span className="text-4xl sm:text-5xl font-bold">
+                    {active?.id === type.id && playing ? timeLeft : type.inhale}
+                  </span>
+                  <span className="text-white/70 uppercase tracking-widest text-xs mt-1">
+                    {active?.id === type.id && playing ? phase : "Ready"}
+                  </span>
+                </div>
+              </div>
+
+              {/* Controls */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10 justify-center">
+                <button
+                  onClick={() =>
+                    active?.id === type.id && playing
+                      ? stopBreathing()
+                      : startBreathing(type)
+                  }
+                  className="
+                    flex items-center justify-center gap-2
+                    bg-emerald-500 hover:bg-emerald-600
+                    text-white px-6 sm:px-8 py-3
+                    rounded-xl font-semibold transition
+                    shadow-lg shadow-emerald-500/30
+                  "
+                >
+                  {active?.id === type.id && playing ? <FaPause /> : <FaPlay />}
+                  {active?.id === type.id && playing ? "Pause" : "Start"}
+                </button>
+
+                <button
+                  onClick={stopBreathing}
+                  className="
+                    flex items-center justify-center gap-2
+                    bg-white/10 hover:bg-white/20
+                    border border-white/20
+                    text-white px-6 sm:px-8 py-3
+                    rounded-xl font-semibold transition
+                  "
+                >
+                  <FaUndo /> Reset
+                </button>
+              </div>
+
+              {/* Info */}
+              <div className="bg-white/10 rounded-2xl p-4 sm:p-6 text-center space-y-1">
+                <p><b>Inhale</b> for {type.inhale} seconds</p>
+                {type.hold && <p><b>Hold</b> for {type.hold} seconds</p>}
+                <p><b>Exhale</b> for {type.exhale} seconds</p>
               </div>
             </div>
+          ))}
+        </div>
 
-            <div className="flex gap-4 mb-10">
-              <button
-                onClick={() => (active?.id === type.id && playing ? stopBreathing() : startBreathing(type))}
-                className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-xl font-semibold transition-all shadow-lg shadow-emerald-200"
-              >
-                {active?.id === type.id && playing ? <FaPause /> : <FaPlay />}
-                {active?.id === type.id && playing ? "Pause" : "Start"}
-              </button>
-              
-              <button 
-                onClick={stopBreathing}
-                className="flex items-center gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-600 px-8 py-3 rounded-xl font-semibold transition-all"
-              >
-                <FaUndo /> Reset
-              </button>
-            </div>
-
-            <div className="w-full bg-gray-100 rounded-2xl p-6 text-center space-y-1">
-              <p className="font-medium text-gray-700"><b>Inhale</b> for {type.inhale} seconds</p>
-              {type.hold && <p className="font-medium text-gray-700"><b>Hold</b> for {type.hold} seconds</p>}
-              <p className="font-medium text-gray-700"><b>Exhale</b> for {type.exhale} seconds</p>
-            </div>
-          </div>
-        ))}
+        {/* Audio */}
+        <audio ref={audioRef} loop>
+          <source src="/Audio/tibetan.mp3" type="audio/mpeg" />
+        </audio>
       </div>
-
-      <audio ref={audioRef} loop>
-        <source src="/Audio/tibetan.mp3" type="audio/mpeg" />
-      </audio>
     </section>
   );
 };

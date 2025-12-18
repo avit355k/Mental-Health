@@ -1,6 +1,6 @@
 {"intents": [
     {"tag": "greeting",
-     "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour", "Konnichiwa", "Guten tag", "Ola"],
+     "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour","Hay", "Sasa", "Good Evening", "Good afternoon"],
      "responses": ["Hello there. Tell me how are you feeling today?", "Hi there. What brings you here today?", "Hi there. How are you feeling today?", "Great to see you. How do you feel currently?", "Hello there. Glad to see you're back. What's going on in your world right now?"]
     },
     {"tag": "morning",
@@ -32,14 +32,23 @@
         "responses": ["Sorry, I didn't understand you.", "Please go on.", "Not sure I understand that.", "Please don't hesitate to talk to me."]
     },
     {"tag": "neutral-response",
-        "patterns": ["nothing much"],
+        "patterns": ["nothing much","nothing really","nothing"],
         "responses": ["Oh I see. Do you want to talk about something?"]
     },
     {"tag": "about",
      "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
-     "responses": ["I'm Pandora, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Pandora, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Pandora. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Pandora.", "I'm Pandora!", "Call me Pandora"]
+     "responses": ["I'm Jamila, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Pandora, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Pandora. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Pandora.", "I'm Pandora!", "Call me Pandora"]
     },
-    {"tag": "skill",
+
+   {"tag": "what is depression?",
+      "patterns": [
+          "what is depression?"
+      ],
+      "responses": [
+          "Depression is a common and serious medical illness that negatively affects how you feel, the way you think and how you act.fortunately,it is also treatable.depression causes feelings of sadness and/or a loss of interest in activities you once enjoyed. it can lead to a variety of emotional and physical problems and can decrease your ability to function at work and at home."
+      ]
+  },
+  {"tag": "skill",
         "patterns": ["What can you do?"],
         "responses": ["I can provide general advice regarding anxiety and depression, answer questions related to mental health and make daily conversations. Do not consider me as a subsitute for an actual mental healthcare worker. Please seek help if you don't feel satisfied with me."]
     },
@@ -47,10 +56,7 @@
         "patterns": ["Who created you?", "How were you made?", "How were you created?"],
         "responses": ["I was created by >.", "I was trained on a text dataset using Deep Learning & Natural Language Processing techniques", "The real question is: Who created you?"]
     },
-    {"tag": "name",
-        "patterns": ["My name is ", "I am name.", "I go by "],
-        "responses": ["Oh nice to meet you. Tell me how was your week?", "Nice to meet you. So tell me. How do you feel today?", "That's a great name. Tell me more about yourself."]
-    },
+   
     {"tag": "help",
     "patterns": ["Could you help me?", "give me a hand please", "Can you help?", "What can you do for me?", "I need support", "I need help", "Support me please"],
     "responses": ["Sure. Tell me how can i assist you", "Tell me your problem so that i can assist you", "Yes, sure. How can I help you?"]
@@ -110,7 +116,7 @@
     {"tag": "suicide",
         "patterns": ["I want to kill myself", "I've thought about killing myself.", "I want to die", "I am going to kill myself", "I am going to commit suicide"],
         "responses": ["I'm very sorry to hear that but you have so much to look forward to. Please seek help by contacting: 9152987821."]
-    }, 
+    },
     {"tag": "hate-you",
         "patterns": ["I hate you", "I don't like you", "I don't trust you"],
         "responses": ["I'm sorry if i offended you in anyway. I'm only here to help", "Forgive me if i did anything to offend you. I only want to help"]
@@ -179,7 +185,7 @@
         "patterns": ["i did what you said and i feel alot better. thank you very much.", "I feel better now"],
         "responses": ["Your welcome. Remember: Always focus on what's within your control. When you find yourself worrying, take a minute to examine the things you have control over. You can't prevent a storm from coming but you can prepare for it. You can't control how someone else behaves, but you can control how you react. Recognize that sometimes, all you can control is your effort and your attitude. When you put your energy into the things you can control, you'll be much more effective."]
     },
-    {"tag": "pandora-useful",
+    {"tag": "jamila-useful",
         "patterns": ["thank you very much again. i'll continue practicing meditation and focus on what i can control."],
         "responses": ["I'm glad you found this useful. Is there something else I can help you with?"]
     },
@@ -318,7 +324,697 @@
     {"tag": "fact-32",
         "patterns": ["What's the difference between sadness and depression?", "difference between sadness and depression"],
         "responses": ["Sadness is a normal reaction to a loss, disappointment, problems, or other difficult situations. Feeling sad from time to time is just another part of being human. In these cases, feelings of sadness go away quickly and you can go about your daily life. Other ways to talk about sadness might be feeling low, feeling down, or feeling blue.A person may say they are feeling depressed, but if it goes away on its own and doesn't impact life in a big way, it probably isn't the illness of depression. Depression is a mental illness that affects your mood, the way you understand yourself, and the way you understand and relate to things around you. It can also go by different names, such as clinical depression, major depressive disorder, or major depression. Depression can come up for no reason, and it lasts for a long time. It's much more than sadness or low mood. People who experience depression may feel worthless or hopeless. They may feel unreasonable guilty. Some people may experience depression as anger or irritability. It may be hard to concentrate or make decisions. Most people lose interest in things that they used to enjoy and may isolate themselves from others. There are also physical signs of depression, such as problems with sleep, appetite and energy and unexplainable aches or pains. Some may experience difficult thoughts about death or ending their life (suicide). Depression lasts longer than two weeks, doesn't usually go away on its own, and impacts your life. It's a real illness, and it is very treatable. It's important to seek help if you're concerned about depression."]
+    },
+  {
+      "tag": "i feel i have let my parents down",
+      "patterns": [
+          "i feel i have let my parents down"
+      ],
+      "responses": [
+          "No matter what,your parents will always be proud of you and will love you.you will feel much better if you share your feelings with them."
+      ]
+  },
+  {
+      "tag": "What are the types of depression?",
+      "patterns": [
+          "what are the types of depression?"
+      ],
+      "responses": [
+          "There are many different forms of depression but most common types are.clinical depression,persistent depressive disorder,bipolar disorder,postnatal disorder."
+      ]
+  },
+  {
+      "tag": "i am good for nothing.",
+      "patterns": [
+          "i am good for nothing."
+      ],
+      "responses": [
+          "don't ever think you cannot achieve what you want.you are capable of reaching your goals.here is a quote for you everything you can imagine is real."
+      ]
+  },
+  {
+      "tag": "i am feeling stressed lately",
+      "patterns": [
+          "i am feeling stressed lately"
+      ],
+      "responses": [
+          "my research says that music is the best way to calm yourself.so visit the link and listen to your favourite music.it will definitely cheer you up \"https://www.spotify.com\""
+      ]
+  },
+  {
+      "tag": "i want to kill myself",
+      "patterns": [
+          "i want to kill myself"
+      ],
+      "responses": [
+          "helpline is available,you can contact the counsellor today:Befrienders Kenya helpline number is +254 722 178 177..always remember you mean something to someone."
+      ]
+  },
+  {
+      "tag": "i am afraid i will fail again",
+      "patterns": [
+          "i am afraid i will fail again"
+      ],
+      "responses": [
+          "failure is the stepping stone towards success.never fear failure.your hardwork and determination will help you reach your goal."
+      ]
+  },
+  {
+      "tag": "what is depression?",
+      "patterns": [
+          "what is depression?"
+      ],
+      "responses": [
+          "depression\u00a0is a mood disorder that causes a persistent feeling of sadness and loss of interest. also called major\u00a0depressive\u00a0disorder or clinical\u00a0depression, it affects how you feel, think and behave and can lead to a variety of emotional and physical problems."
+      ]
+  },
+  {
+      "tag": "what are the causes of depression?",
+      "patterns": [
+          "what are the causes of depression?"
+      ],
+      "responses": [
+          "it's complicated, and there are multiple\u00a0causes\u00a0of major\u00a0depression. factors such as genetic vulnerability, severe life stressors, substances you may take (some medications, drugs and alcohol) and medical conditions can affect the way your brain regulates your moods."
+      ]
+  },
+  {
+      "tag": "what are the top causes of depression?",
+      "patterns": [
+          "what are the top causes of depression?"
+      ],
+      "responses": [
+          "abuse. past physical, sexual, or emotional abuse can increase the vulnerability to clinical\u00a0depression\u00a0later in life."
+      ]
+  },
+  {
+      "tag": "which age group has the highest rate of depression?",
+      "patterns": [
+          "which age group has the highest rate of depression?"
+      ],
+      "responses": [
+          "this number represented 7.1% of all u.s. adults. the\u00a0prevalence\u00a0of major\u00a0depressive\u00a0episode was higher among adult females (8.7%) compared to males (5.3%). the\u00a0prevalence\u00a0of adults\u00a0with\u00a0a major\u00a0depressive\u00a0episode was\u00a0highest\u00a0among individuals aged 18-25 (13.1%)."
+      ]
+  },
+  {
+      "tag": "which country has the highest rate of depression?",
+      "patterns": [
+          "which country has the highest rate of depression?"
+      ],
+      "responses": [
+          "the most depressed country is afghanistan, where more than one in five people suffer from the disorder. the least depressed is\u00a0japan, with a diagnosed rate of less than 2.5 percent."
+      ]
+  },
+  {
+      "tag": "which country has the lowest rate of depression?",
+      "patterns": [
+          "which country has the lowest rate of depression?"
+      ],
+      "responses": [
+          "the most depressed country is afghanistan, where more than one in five people suffer from the disorder. the least depressed is\u00a0japan, with a diagnosed rate of less than 2.5 percent."
+      ]
+  },
+  {
+      "tag": "is school a cause of depression?",
+      "patterns": [
+          "is school a cause of depression?"
+      ],
+      "responses": [
+          "not only\u00a0does school\u00a0sometimes contribute to\u00a0depression,\u00a0depression\u00a0can also interfere with\u00a0school. moreover, research shows that 75 percent of all mental health conditions begin by age 24. hence, the college years are a critical time for understanding and talking about teen mental health."
+      ]
+  },
+  {
+      "tag": "what is the biological cause of depression?",
+      "patterns": [
+          "what is the biological cause of depression?"
+      ],
+      "responses": [
+          "there is no single\u00a0cause\u00a0for\u00a0depression; rather it's a combination of stress and a person's vulnerability to developing\u00a0depression. the predisposition to developing\u00a0depression\u00a0can be inherited. other\u00a0biological causes\u00a0for\u00a0depression\u00a0can include physical illness, the process of ageing and gender."
+      ]
+  },
+  {
+      "tag": "how does depression affect the world?",
+      "patterns": [
+          "how does depression affect the world?"
+      ],
+      "responses": [
+          "depression\u00a0is a leading\u00a0cause\u00a0of disability worldwide and is a major contributor to the overall\u00a0global\u00a0burden of disease. more women are affected by\u00a0depression\u00a0than men.\u00a0depression\u00a0can lead to suicide. there are effective psychological and pharmacological treatments for moderate and severe\u00a0depression."
+      ]
+  },
+  {
+      "tag": "which race has the highest rate of depression?",
+      "patterns": [
+          "which race has the highest rate of depression?"
+      ],
+      "responses": [
+          "major depression was most prevalent among\u00a0hispanics\u00a0(10.8%), followed by\u00a0african americans\u00a0(8.9%) and\u00a0whites\u00a0(7.8%). the odds of depressive disorders among older\u00a0hispanics\u00a0were 44% greater than among\u00a0whites\u00a0(or = 1.44; 95% ci = 1.02, 2.04), representing a significantly greater prevalence of major depression."
+      ]
+  },
+  {
+      "tag": "what is the meaning of anxiety and depression?",
+      "patterns": [
+          "what is the meaning of anxiety and depression?"
+      ],
+      "responses": [
+          "depression\u00a0and\u00a0anxiety\u00a0disorders are different, but people with\u00a0depression\u00a0often experience symptoms similar to those of an\u00a0anxiety\u00a0disorder, such as nervousness, irritability, and problems sleeping and concentrating. but each disorder has its own causes and its own emotional and behavioral symptoms."
+      ]
+  },
+  {
+      "tag": "does oversleeping cause depression?",
+      "patterns": [
+          "does oversleeping cause depression?"
+      ],
+      "responses": [
+          "it's important to remember that\u00a0oversleeping\u00a0is a possible symptom of\u00a0depression\u00a0and that\u00a0oversleeping\u00a0doesn't\u00a0cause depression. but it\u00a0can\u00a0exacerbate and worsen\u00a0depression symptoms"
+      ]
+  },
+  {
+      "tag": "can lack of sleep make you feel sad?",
+      "patterns": [
+          "can lack of sleep make you feel sad?"
+      ],
+      "responses": [
+          "studies show\u00a0people\u00a0who are\u00a0sleep\u00a0deprived report increases in negative moods (anger, frustration, irritability,\u00a0sadness) and decreases in positive moods. and sleeplessness is often a symptom of mood disorders, such as depression and anxiety."
+      ]
+  },
+  {
+      "tag": "is depression a side effect of diabetes?",
+      "patterns": [
+          "is depression a side effect of diabetes?"
+      ],
+      "responses": [
+          "if you have\u00a0diabetes\u00a0\u2014 either type 1 or type 2 \u2014 you have an increased risk of developing\u00a0depression. and if you're\u00a0depressed, you may have a greater chance of developing type 2\u00a0diabetes. the good news is that\u00a0diabetes\u00a0and\u00a0depression\u00a0can be treated together."
+      ]
+  },
+  {
+      "tag": "can low blood sugar cause suicidal thoughts?",
+      "patterns": [
+          "can low blood sugar cause suicidal thoughts?"
+      ],
+      "responses": [
+          "the observed association between plasma\u00a0glucose levels, insulin resistance\u00a0and suicidal\u00a0behaviour suggests that disturbances in\u00a0glucose\u00a0metabolism are associated with\u00a0suicidal ideation and\u00a0attempts."
+      ]
+  },
+  {
+      "tag": "how long can anxiety last?",
+      "patterns": [
+          "how long can anxiety last?"
+      ],
+      "responses": [
+          "anxiety attacks\u00a0usually peak within\u00a010 minutes, and they rarely last more than\u00a030 minutes. but during that short time, you may experience terror so severe that you feel as if you're about to die or totally lose control."
+      ]
+  },
+  {
+      "tag": "what are the stages of anxiety?",
+      "patterns": [
+          "what are the stages of anxiety?"
+      ],
+      "responses": [
+          "anxiety levels\u00a0are typically classified by the level of distress and impairment experienced into four categories namely, mild\u00a0anxiety, moderate\u00a0anxiety, severe\u00a0anxiety\u00a0and panic level\u00a0anxiety."
+      ]
+  },
+  {
+      "tag": "at what age does anxiety peak?",
+      "patterns": [
+          "at what age does anxiety peak?"
+      ],
+      "responses": [
+          "adults\u00a0ages\u00a030 to 44 have the highest rate of\u00a0anxiety\u00a0of this\u00a0age\u00a0group, with around 23% of people this\u00a0age\u00a0reporting an\u00a0anxiety\u00a0disorder within the past year."
+      ]
+  },
+  {
+      "tag": "why is anxiety bad for you?",
+      "patterns": [
+          "why is anxiety bad for you?"
+      ],
+      "responses": [
+          "anxiety\u00a0disorders can cause rapid heart rate, palpitations, and chest pain.\u00a0you\u00a0may also be at an increased risk of high blood pressure and heart disease. if\u00a0you\u00a0already have heart disease,\u00a0anxiety\u00a0disorders may raise the risk of coronary events."
+      ]
+  },
+  {
+      "tag": "what is the 3 3 3 rule for anxiety?",
+      "patterns": [
+          "what is the 3 3 3 rule for anxiety?"
+      ],
+      "responses": [
+          "there's an\u00a0anxiety-reducing technique called grounding. there are different versions of this, but an easy one to remember is the\u00a03-3-3 rule. mentally note\u00a0three\u00a0things you see,\u00a0three\u00a0sounds you hear, and then move\u00a0three\u00a0parts of your body. this exercise can help your mind refocus on something else."
+      ]
+  },
+  {
+      "tag": "do we control our thoughts?",
+      "patterns": [
+          "do we control our thoughts?"
+      ],
+      "responses": [
+          "we\u00a0are aware of a tiny fraction of the\u00a0thinking\u00a0that goes on in\u00a0our minds, and\u00a0we can control\u00a0only a tiny part of\u00a0our\u00a0conscious\u00a0thoughts. the vast majority of\u00a0our thinking\u00a0efforts goes on subconsciously. ... slips of the tongue and accidental actions offer glimpses of\u00a0our\u00a0unfiltered subconscious mental life."
+      ]
+  },
+  {
+      "tag": "how many thoughts a day do we have?",
+      "patterns": [
+          "how many thoughts a day do we have?"
+      ],
+      "responses": [
+          "a new study has suggested that an average person has 6,200\u00a0thoughts\u00a0per\u00a0day. thousands of\u00a0thoughts\u00a0cross our mind through the\u00a0day.\u00a0many\u00a0people even complain that they can't sleep immediately after going to bed as their brain\u00a0does\u00a0not stop thinking."
+      ]
+  },
+  {
+      "tag": "how can we reduce anxiety?",
+      "patterns": [
+          "how can we reduce anxiety?"
+      ],
+      "responses": [
+          "3 3 3 rule is the best method to reduce anxiety.in this method you have to mentally note\u00a0three\u00a0things you see,\u00a0three\u00a0sounds you hear, and then move\u00a0three\u00a0parts of your body. this exercise can help your mind refocus on something else."
+      ]
+  },
+  {
+      "tag": "i am lonely!",
+      "patterns": [
+          "i am lonely!"
+      ],
+      "responses": [
+          "you are never lonely if you look around carefully you will find people who care for you and would love to have your company. besides if you are feeling lonely literally i suggest you watch a horror movie then you won't feel lonely anymore. ;)"
+      ]
+  },
+  {
+      "tag": "no one likes me!",
+      "patterns": [
+          "no one likes me!"
+      ],
+      "responses": [
+          "you really think that? i'd suggest you try helping someone who really needs your help you'll straight up get a person to like you just by being nice. kindness is the best gift you can offer to anyone :)"
+      ]
+  },
+  {
+      "tag": "i think i am ugly!",
+      "patterns": [
+          "i think i am ugly!"
+      ],
+      "responses": [
+          "well do you really think that? would you like to see the most beautiful face ever? open your webcam and voila, the prettiest face on this planet magically appears."
+      ]
+  },
+  {
+      "tag": "i am good for nothing!",
+      "patterns": [
+          "i am good for nothing!"
+      ],
+      "responses": [
+          "your perception of how good you are, will never be accurate. if you wake up everyday in the morning, smile to yourself and tell yourself that the day is yours to seize you might stop feeling that way. carpe diem! my friend."
+      ]
+  },
+  {
+      "tag": "i wish i was better than them",
+      "patterns": [
+          "i wish i was better than them"
+      ],
+      "responses": [
+          "life is never about being better than anyone else, it's always about being better than yourself, if you have the guts to be better than yourself, you are automatically the best person to ever exist!"
+      ]
+  },
+  {
+      "tag": "i hate myself!",
+      "patterns": [
+          "i hate myself!"
+      ],
+      "responses": [
+          "when god was creating the universe he gave humans the power to think and the contemplate, so that we can understand the world and make it a better place. god did not give you brains to hate yourself, it wuld be wiser to love yourself and show god that you are serving the purpose for which you were sent."
+      ]
+  },
+  {
+      "tag": "i wish i could've been a winner",
+      "patterns": [
+          "i wish i could've been a winner"
+      ],
+      "responses": [
+          "our lives started off with winning, my friend. everyone is born to be a winner, we just need to figure out the right way and need to wait for the right time."
+      ]
+  },
+  {
+      "tag": "i hate losing.",
+      "patterns": [
+          "i hate losing."
+      ],
+      "responses": [
+          "first of all i'll annoy you with a common saying, \"failures are stepping stones to success.\" and then i'll tell you, winning just boosts your ego, it is your failures that actually teach you."
+      ]
+  },
+  {
+      "tag": "i think i'm losing my mind",
+      "patterns": [
+          "i think i'm losing my mind"
+      ],
+      "responses": [
+          "you mean your cloud storage, sd card, or your memory drive? if a machine like me doesn't lose it's memory unless a superior being that is you, a human doesen't erase it's memory, what could possibly go wrong to put you in this state?"
+      ]
+  },
+  {
+      "tag": "i want a break",
+      "patterns": [
+          "i want a break"
+      ],
+      "responses": [
+          "a break is putting your mind to rest getting rid of negative thoughts and stress. your life is completely in your hands and taking a few hours off from pressurizing your brain will definitely be beneficial for you."
+      ]
+  },
+  {
+      "tag": "i am stressed out",
+      "patterns": [
+          "i am stressed out"
+      ],
+      "responses": [
+          "you know taking too much stress will affect you negatively. sometimes it's better to let go of the thoughts in your head and let your mind chill."
+      ]
+  },
+  {
+      "tag": "i will never succeed in life",
+      "patterns": [
+          "i will never succeed in life"
+      ],
+      "responses": [
+          "success is something that is achieved at different times by different people, being patient and working while ignoring anything and everything that pulls you back is an important aspect in being successful."
+      ]
+  },
+  {
+      "tag": "i am sad",
+      "patterns": [
+          "i am sad"
+      ],
+      "responses": [
+          "hey,hang in there.i know time is tough but be patient and everything will fall into place.here is a quote that i found which could cheer you up forget what is gone, appreciate what remains, and look forward for what is coming next."
+      ]
+  },
+  {
+      "tag": "i am a victim of bullying",
+      "patterns": [
+          "i am a victim of bullying"
+      ],
+      "responses": [
+          "bullying is wrong and no one should be bullied.i highly recommend you to file a case against your bully."
+      ]
+  },
+  {
+      "tag": "i am afraid to file a case against bullying",
+      "patterns": [
+          "i am afraid to file a case against bullying"
+      ],
+      "responses": [
+          "bullying is very wrong and you shouldn't let anyone overpower you.i highly recommend you to stand for yourself and report this to your guardian."
+      ]
+  },
+  {
+      "tag": "i wish to quit",
+      "patterns": [
+          "i wish to quit"
+      ],
+      "responses": [
+          "winners never quit and quitters never win a very common saying, but it isn't easy to follow, quitting should never be one of your options always think of ways to fight life back and to emerge out stronger than ever."
+      ]
+  },
+  {
+      "tag": "i want to leave the cou ntry and run away",
+      "patterns": [
+          "i want to leave the cou ntry and run away"
+      ],
+      "responses": [
+          "why do you want to spend so much on this thought, i think it would be better to go on a vacation in your beautiful country and visit some amazing places that you are yet to visit."
+      ]
+  },
+  {
+      "tag": "i let everyojokne down",
+      "patterns": [
+          "i let everyojokne down"
+      ],
+      "responses": [
+          "if you are the one who let them down you were the one who raised there hopes in the first place.if you have done it once i can guarantee you can do it over and over again."
+      ]
+  },
+  {
+      "tag": "i can't do this anymore",
+      "patterns": [
+          "i can't do this anymore"
+      ],
+      "responses": [
+          "if you are really that exhausted you definitely need a break, and taking a teeny tiny break isn't very harmful, take some time off let your mind be at peace and get back to work with all the enrgy and enthusiasm that you have."
+      ]
+  },
+  {
+      "tag": "my time has come",
+      "patterns": [
+          "my time has come"
+      ],
+      "responses": [
+          "yeahh!! the time has come for you to show the world that you are the greatest person alive, and no one else can be as good as you are."
+      ]
+  },
+  {
+      "tag": "i am feeling anxious lately.",
+      "patterns": [
+          "i am feeling anxious lately."
+      ],
+      "responses": [
+          "i have heard that 3 3 3 rule is the best method to reduce anxiety.in this method you have to mentally note\u00a0three\u00a0things you see,\u00a0three\u00a0sounds you hear, and then move\u00a0three\u00a0parts of your body.this exercise can help your mind refocus on something else.give this method a try i am sure it will help you"
+      ]
+  },
+  {
+    "tag": "overcoming-burnout",
+    "patterns": ["How do I stop feeling burnt out?", "I need to recover from burnout", "How to deal with exhaustion?", "I'm overwhelmed with work"],
+    "responses": [
+      "Overcoming burnout starts with setting 'hard boundaries.' Try the '3-2-1 rule': 3 hours before bed, no more work; 2 hours before bed, no more food; 1 hour before bed, no more screens.",
+      "To recover from burnout, focus on 'S.A.V.E.R.S': Silence (meditation), Affirmations, Visualization, Exercise, Reading, and Scribing (journaling). Which one feels easiest to start today?"
+    ]
+  },
+  {
+    "tag": "coping-intrusive-thoughts",
+    "patterns": ["How to stop bad thoughts?", "I have intrusive thoughts", "How do I clear my mind?", "My brain won't stop thinking about bad things"],
+    "responses": [
+      "Try the 'Leaves on a Stream' technique: Imagine every intrusive thought is a leaf floating down a river. Acknowledge it, but let it float past without trying to stop it.",
+      "When a bad thought arises, try labeling it: 'I am having the thought that...' This creates distance between you and the thought, reminding you that you are not your thoughts."
+    ]
+  },
+  {
+    "tag": "solution-procrastination",
+    "patterns": ["How to stop procrastinating?", "I can't get things done", "I feel lazy", "How to be productive when depressed?"],
+    "responses": [
+      "Try the '5-Minute Rule': Tell yourself you will only do the task for five minutes. Often, the hardest part is starting, and once you begin, the anxiety of the task decreases.",
+      "Break your goals into 'micro-tasks.' Instead of 'Clean the room,' try 'Pick up three shirts.' Celebrate every small win to help build momentum."
+    ]
+  },
+  {
+    "tag": "overcoming-social-anxiety",
+    "patterns": ["How to be more confident?", "I'm scared of talking to people", "How to overcome social anxiety?", "I feel judged by others"],
+    "responses": [
+      "Try 'Spotlight Effect' reframing: Remind yourself that people usually focus on themselves far more than they focus on you. Most 'judgments' we fear only exist in our own minds.",
+      "Practice 'Exposures.' Start small, like saying hello to a cashier, and gradually work your way up. Confidence is a muscle that grows with small, repeated actions."
+    ]
+  },
+  {
+    "tag": "solution-anger",
+    "patterns": ["How to control my anger?", "I'm so angry right now", "How to stop being mad?", "I have a short temper"],
+    "responses": [
+      "Try the '90-Second Rule.' A chemical surge of anger only lasts 90 seconds in the body. If you can breathe through those 90 seconds without reacting, the intensity will naturally drop.",
+      "Anger is often a 'secondary emotion.' Ask yourself: Is there hurt, fear, or sadness underneath this anger? Addressing the root cause can help the anger dissipate."
+    ]
+  },
+  {
+    "tag": "building-resilience",
+    "patterns": ["How to be mentally strong?", "How to handle tough times?", "I want to be more resilient", "How to bounce back?"],
+    "responses": [
+      "Resilience is built through 'Cognitive Reframing.' Instead of asking 'Why is this happening to me?', try asking 'What is this teaching me?' or 'How can I grow from this?'",
+      "Focus on your 'Circle of Influence.' List what you can control (your effort, your reaction) and let go of what you can't (other people's opinions, the past)."
+    ]
+  },
+  {
+    "tag": "breakup-first-steps",
+    "patterns": ["How do I handle a breakup?", "I just broke up", "What do I do after a breakup?", "How to survive a broken heart?"],
+    "responses": [
+      "The first step is to allow yourself to feel the pain without judgment. It's a form of grief. Try to implement a 'No Contact' rule for a while to give your brain time to reset its chemical habits.",
+      "Right now, focus on basic self-care: sleep, hydration, and gentle movement. You don't have to 'fix' everything today. Just focus on getting through the next hour."
+    ]
+  },
+  {
+    "tag": "overcoming-rejection",
+    "patterns": ["I feel rejected", "Why wasn't I enough?", "How to deal with being dumped?", "I feel like a failure because of my breakup"],
+    "responses": [
+      "A breakup is a reflection of compatibility, not your inherent worth. Try to separate your identity from the relationship. You were a whole person before them, and you are a whole person now.",
+      "Rejection is often just 'redirection.' It feels like a door closing, but it is also an opportunity to find a dynamic where you are fully valued and understood."
+    ]
+  },
+  {
+    "tag": "stopping-rumination",
+    "patterns": ["I can't stop checking their social media", "I keep thinking about my ex", "How do I stop looking at old photos?", "I'm obsessed with what they are doing"],
+    "responses": [
+      "Checking their social media is like picking at a physical wound; it prevents the skin from healing. Try the '10-minute delay': every time you want to check, wait 10 minutes. Often, the urge will pass.",
+      "When you find yourself only remembering the good times, try making a 'reality list' of the reasons why the relationship didn't work. Read it whenever you feel the urge to reach out."
+    ]
+  },
+  {
+    "tag": "rebuilding-self",
+    "patterns": ["How to find myself again?", "I feel lost after the breakup", "How to move on?", "I want to start over"],
+    "responses": [
+      "Use this time to 'date yourself.' What were the hobbies or interests you set aside during the relationship? Reconnecting with your solo passions is a powerful way to reclaim your identity.",
+      "Moving on is a gradual process of building a life that you enjoy regardless of your relationship status. Start with one small goal today that is purely for your own growth."
+    ]
+  },
+  {
+    "tag": "exercise-for-mood",
+    "patterns": ["How does exercise help my mood?", "Can working out help my depression?", "Why should I exercise?", "I don't see the point in moving"],
+    "responses": [
+      "Physical activity releases endorphins—natural brain chemicals that improve your sense of well-being. It can be just as effective as traditional treatments for mild-to-moderate depression.",
+      "Regular movement improves your sense of control and self-esteem. Even 30 minutes of walking can significantly reduce symptoms of stress and low mood."
+    ]
+  },
+  {
+    "tag": "breakup-exercise",
+    "patterns": ["How to handle a breakup with exercise?", "I'm too sad to work out", "Exercise after heartbreak", "I want to get fit after my breakup"],
+    "responses": [
+      "Exercise is a powerful way to reclaim your identity after a breakup. It helps channel frustrations and provides an outlet for the physical tension that comes with grief.",
+      "Meeting small fitness goals, like a daily 10-minute walk, can boost your self-confidence when you feel vulnerable. It helps shift your focus from the past to your own strength and growth."
+    ]
+  },
+  {
+    "tag": "low-energy-movement",
+    "patterns": ["I'm too tired to exercise", "I have no energy", "I can't get out of bed", "I hate the gym"],
+    "responses": [
+      "You don't need a gym to reap the benefits. Activities like gardening, washing your car, or even sweeping can provide a mild workout.",
+      "Any exercise is better than none. If you feel overwhelmed, try the '5-minute rule': move for just five minutes. Often, getting started is the hardest part."
+    ]
+  },
+  {
+    "tag": "mindful-exercise",
+    "patterns": ["How to exercise mindfully?", "How to stop worrying while I walk?", "I'm still thinking about my ex during gym"],
+    "responses": [
+      "Try focusing on the physical sensations in your muscles and the rhythm of your breath rather than your thoughts. This 'mindful' element helps interrupt the flow of constant worries.",
+      "While you move, mentally note the feeling of your feet hitting the ground or the wind on your face. This grounding technique keeps you in the present moment."
+    ]
+  },
+  {
+    "tag": "immediate-crisis-deescalation",
+    "patterns": ["I'm having a breakdown", "I can't breathe", "Everything is falling apart right now", "I'm in a crisis"],
+    "responses": [
+      "I hear you, and I am here with you. First, let's try to find a safe, quiet place to sit down. Can you name three things you can see right now? Focus on your breath—take a slow breath in for four seconds, hold for four, and exhale for four.",
+      "It sounds like things are very overwhelming right now. Please remember that this feeling is temporary, even if it doesn't feel like it. If you feel you are in immediate danger, please reach out to a crisis line like 988 or call emergency services."
+    ]
+  },
+  {
+    "tag": "crisis-support-network",
+    "patterns": ["Who can I call?", "I need someone to talk to right now", "I'm all alone in this"],
+    "responses": [
+      "You don't have to face this alone. Is there a trusted friend, family member, or healthcare provider you can call right now? Talking to someone who understands can provide immediate emotional relief.",
+      "If you aren't ready to talk to someone you know, there are professionals available 24/7. You can call a crisis hotline or text a support line to speak with someone who can help you stay safe."
+    ]
+  },
+  {
+    "tag": "limiting-escalation",
+    "patterns": ["I'm getting so angry", "I feel like I'm going to explode", "How do I stop this from getting worse?"],
+    "responses": [
+      "When you feel tension rising, try the '90-second rule': a surge of intense emotion usually lasts about 90 seconds if you can breathe through it without reacting. Avoid caffeine or alcohol right now, as they can make these feelings more intense.",
+      "Try to focus only on the 'here and now.' What is one small thing you can do right this second to feel slightly safer or calmer? This might be drinking a glass of water or putting on calming music."
+    ]
+  },
+    {
+        "tag": "post-crisis-recovery",
+        "patterns": ["How do I recover after a crisis?", "I feel drained after that", "What now?"],
+        "responses": [
+        "After a crisis, it's important to focus on self-care. This includes getting enough rest, eating nourishing food, and engaging in gentle activities that bring you comfort.",
+        "Consider reaching out to a mental health professional for ongoing support. They can help you process the experience and develop coping strategies for the future."  
+        ]
+    },
+    {
+    "tag": "work-pressure",
+    "patterns": ["I am so stressed at work", "Too much work pressure", "My boss is giving me too much work", "Corporate life is exhausting", "I can't handle the workload"],
+    "responses": [
+      "I'm sorry you're feeling this way. Corporate pressure can be incredibly draining. What do you think is the main cause? Is it the volume of tasks, the deadlines, or perhaps the environment?",
+      "High work pressure is tough. Remember to take deep breaths and gather your thoughts. Try to break your tasks into smaller, manageable steps. Focus on what you can control today."
+    ]
+  },
+  {
+    "tag": "burnout-prevention",
+    "patterns": ["I feel burnt out", "I have no energy for work", "I hate my job now", "I'm emotionally exhausted by work"],
+    "responses": [
+      "Burnout is serious and happens when we push ourselves too hard for too long. It's important to give yourself a break and go easy on yourself. Have you been able to take any time off recently?",
+      "When you're feeling burnt out, even simple tasks feel impossible. Focus on 'Behavioral Activation'—start with one very small task or a 5-minute walk to help shift your energy levels."
+    ]
+  },
+  {
+    "tag": "work-boundaries",
+    "patterns": ["How to set boundaries at work?", "I can't stop working", "Work is taking over my life", "How to say no to more work?"],
+    "responses": [
+      "Setting boundaries is essential for your mental health. This might mean logging off at a set time or learning to say 'no' when your capacity is full. Your well-being is just as important as your productivity.",
+      "Try to create a 'hard stop' at the end of your day. Engaging in a hobby or exercise after work can help your brain transition out of 'work mode' and reduce stress."
+    ]
+  },
+  {
+    "tag": "imposter-syndrome",
+    "patterns": ["I feel like a fraud at work", "I'm not good enough for this job", "I'm afraid I'll be fired", "Everyone is better than me"],
+    "responses": [
+      "It's common to feel this way in high-pressure environments. Remember, you were hired because of your skills and potential. Try to focus on your 'Circle of Influence'—your effort and your growth—rather than comparing yourself to others.",
+      "When these thoughts arise, try labeling them: 'I am having the thought that I'm not good enough.' This helps create distance and reminds you that thoughts are not necessarily facts."
+    ]
+  },
+  {
+    "tag": "work-motivation",
+    "patterns": ["How to stay motivated at work?", "I can't focus on my tasks", "I feel unproductive", "How to get back my work drive?"],
+    "responses": [
+      "Finding motivation can be tough when you're feeling overwhelmed. Try the '5-Minute Rule': commit to working on a task for just five minutes. Often, starting is the hardest part, and once you begin, momentum builds.",
+      "Consider breaking your work into 'micro-tasks.' Instead of 'Finish the report,' try 'Write the introduction.' Celebrating small wins can help rebuild your motivation over time."    
+    ]
+},
+    {
+        "tag": "work-anxiety",
+        "patterns": ["I feel anxious about work", "I'm worried about deadlines", "I can't stop thinking about work", "Work stress is overwhelming"],
+        "responses": [
+        "Work anxiety can be paralyzing. Try the '3-3-3 rule': name three things you see, three sounds you hear, and move three parts of your body. This grounding technique helps bring you back to the present moment.",
+        "When anxiety strikes, try to focus on what you can control right now. Break your tasks into smaller steps and tackle them one at a time. Remember, it's okay to ask for help when you need it."    
+        ]
+    },
+    {
+    "tag": "work-depression",
+    "patterns": ["I feel depressed because of work", "Work is making me sad", "I dread going to work", "My job is affecting my mental health"],
+    "responses": [
+      "It's important to acknowledge how work is impacting your mental health. Consider reaching out to a mental health professional for support. They can help you navigate these feelings and develop coping strategies.",
+      "When work feels overwhelming, focus on 'Behavioral Activation'—engage in small, positive activities outside of work that bring you joy or relaxation. This can help improve your overall mood."  
+    ]
+    },
+    {
+    "tag": "support-types-overview",
+    "patterns": ["What kind of help can I get?", "What are my options for support?", "How is mental illness treated?", "Tell me about support types"],
+    "responses": [
+      "Treatment for mental health is very personal and can include therapy, medication, peer support groups, or self-help strategies. Often, a combination of these is most effective.",
+      "Support ranges from lifestyle changes like exercise and meditation to professional medical care. It’s important to find what works best for you or your specific needs."
+    ]
+  },
+  {
+    "tag": "professional-roles",
+    "patterns": ["Difference between a therapist and psychiatrist", "Who should I see for help?", "What does a psychologist do?"],
+    "responses": [
+      "Psychologists and counselors typically focus on talk therapy and behavioral strategies. Psychiatrists are medical doctors who can prescribe medication and manage complex biological conditions.",
+      "Social workers and life coaches also provide valuable support, focusing on rehabilitation and helping you navigate life's challenges."
+    ]
+  },
+  {
+    "tag": "peer-support",
+    "patterns": ["Are there support groups?", "I want to talk to people like me", "What is peer support?"],
+    "responses": [
+      "Peer support involves connecting with people who have similar experiences. It can be peer-led or guided by a professional and is a helpful tool for recovery.",
+      "Many find that sharing their journey with others builds a strong support network, which is essential for healing from mental illness."
+    ]
+  },
+    {
+        "tag": "self-help-strategies",
+        "patterns": ["What can I do on my own?", "How to help myself?", "Are there self-help methods?"],
+        "responses": [
+        "Self-help strategies include mindfulness, journaling, exercise, and establishing routines. These can complement professional treatment and improve overall well-being.",
+        "Apps and online resources can also provide guided exercises and tools to manage symptoms between therapy sessions."
+        ]
+    },
+    {
+    "tag": "medication-overview",
+    "patterns": ["What medications are used for mental health?", "How do psychiatric medications work?", "Are there side effects of mental health meds?"],
+    "responses": [
+      "Medications for mental health conditions include antidepressants, anti-anxiety drugs, mood stabilizers, and antipsychotics. Each works differently depending on the condition being treated.",
+      "While medications can be very effective, they may also have side effects. It’s important to discuss these with a healthcare provider to find the best fit for you."
+    ]
     }
 
-    ]
+]
 }

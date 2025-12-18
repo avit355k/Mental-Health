@@ -4,7 +4,6 @@ import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 import { Menu, Close } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 
-
 import logo from "../../assets/logo/logo.png";
 import avatarImg from "../../assets/avatar.png";
 
@@ -12,7 +11,8 @@ const Navlinks = [
   { name: "Assessments", path: "/assessments" },
   { name: "Chat Support", path: "/chat-support" },
   {
-    name: "Relaxation", path: "/relaxation",
+    name: "Relaxation",
+    path: "/relaxation",
     sublinks: [
       { name: "Meditation", path: "/relaxation/meditation" },
       { name: "Breathing Exercises", path: "/relaxation/breathing-exercises" },
@@ -63,11 +63,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200 transition-shadow ${scrolled ? "shadow-md" : "shadow-none"
-        }`}
+      className={`w-full sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200 transition-shadow ${
+        scrolled ? "shadow-md" : "shadow-none"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img
@@ -83,10 +83,11 @@ const Navbar = () => {
             <div key={link.name} className="relative group">
               <Link
                 to={link.path}
-                className={`font-medium transition-colors ${location.pathname === link.path
+                className={`font-medium transition-colors ${
+                  location.pathname === link.path
                     ? "text-emerald-600"
                     : "text-gray-700 hover:text-emerald-600"
-                  }`}
+                }`}
               >
                 {link.name}
               </Link>
@@ -111,13 +112,14 @@ const Navbar = () => {
 
         {/* Right Section */}
         <div className="flex items-center gap-4">
-
-          {/* Auth Section */}
+          {/* Desktop Profile Avatar */}
           {isLoggedIn ? (
-            <div className="relative">
+            <div className="relative hidden md:block">
               <button
                 className="flex items-center gap-2 rounded-full focus:outline-none cursor-pointer"
-                onClick={() => setOpenProfileDropdown(!openProfileDropdown)}
+                onClick={() =>
+                  setOpenProfileDropdown(!openProfileDropdown)
+                }
               >
                 <img
                   src={avatarImg}
@@ -162,7 +164,9 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <div className="md:hidden">
-            <IconButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <IconButton
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
               {isMobileMenuOpen ? <Close /> : <Menu />}
             </IconButton>
           </div>
@@ -201,6 +205,7 @@ const Navbar = () => {
                       key={sublink.name}
                       to={sublink.path}
                       className="block text-sm text-gray-600 hover:text-emerald-600"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {sublink.name}
                     </Link>
@@ -210,18 +215,40 @@ const Navbar = () => {
             </div>
           ))}
 
-          {/* Mobile Auth Button */}
+          {/* Mobile Profile Section */}
           {isLoggedIn ? (
-            <Link
-              to="/profile"
-              className="block mt-4 px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium text-center hover:bg-emerald-700 cursor-pointer"
-            >
-              Profile
-            </Link>
+            <div className="mt-4 space-y-2">
+              <Link
+                to="/profile"
+                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Profile
+              </Link>
+
+              <Link
+                to="/dashboard"
+                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
             <Link
               to="/auth"
               className="block mt-4 px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium text-center hover:bg-emerald-700 cursor-pointer"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Get Started
             </Link>
