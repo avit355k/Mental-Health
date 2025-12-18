@@ -68,7 +68,7 @@ const Chatbot = () => {
 
     try {
       const res = await fetch(
-        "https://mental-health-chatbot-xy6b.onrender.com/chatbot",
+        "http://127.0.0.1:5000/chatbot",
         {
           method: "POST",
           headers: {

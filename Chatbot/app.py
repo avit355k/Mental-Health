@@ -22,21 +22,19 @@ words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
 
 app = Flask(__name__)
-# GLOBAL CORS (Render-safe)
 CORS(
     app,
-    resources={r"/*": {"origins": [
-        "https://calmbridge.vercel.app",
-        "http://localhost:5173"
-    ]}}
+    resources={
+        r"/chatbot": {
+            "origins": [
+                "https://calmbridge.vercel.app",
+                "http://localhost:5173"
+            ]
+        }
+    },
+    methods=["POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
 )
-
-@app.after_request
-def add_cors_headers(response):
-    response.headers["Access-Control-Allow-Origin"] = "https://calmbridge.vercel.app"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-    return response
 
 # Create bag of words
 def clean_up_sentence(sentence):
@@ -77,13 +75,14 @@ def get_response(intents_list, intents_json):
             return random.choice(intent['responses'])
 
 
-@app.route("/chatbot", methods=["POST", "OPTIONS"])
+@app.route('/chatbot', methods=['POST', 'OPTIONS'])
 def chatbot_response():
     if request.method == "OPTIONS":
-        return "", 204
+        return jsonify({"status": "ok"}), 200
 
-    message = request.json.get("message", "")
-    ints = predict_class(message)
+    user_message = request.json.get("message")
+
+    ints = predict_class(user_message)
     response = get_response(ints, intents)
     return jsonify({"response": response})
 
@@ -92,4 +91,7 @@ def chatbot_response():
 def home():
     return jsonify({"status": "Chatbot Backend Running"})
 
+
+if __name__ == "__main__":
+    app.run(debug=False, use_reloader=False)
 
