@@ -1,9 +1,12 @@
 import React from "react";
 import { FaShieldAlt, FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="relative w-full `bg-gradient-to-b` from-emerald-50 to-white">
+    <section className="relative w-full bg-gradient-to-b from-emerald-50 to-white">
       <div className="max-w-7xl mx-auto px-6 py-24 text-center">
 
         {/* Badge */}
@@ -29,12 +32,18 @@ const Hero = () => {
 
         {/* CTA Buttons */}
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-          <button className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition cursor-pointer">
+          <button
+            onClick={() => navigate("/assessments")}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition cursor-pointer"
+          >
             Take Assessment
             <FaArrowRight />
           </button>
 
-          <button className="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-100 transition cursor-pointer">
+          <button
+            onClick={() => navigate("/consultants")}
+            className="px-6 py-3 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-100 transition cursor-pointer"
+          >
             Find a Therapist
           </button>
         </div>
