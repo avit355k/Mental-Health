@@ -1,21 +1,23 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { FaStar, FaCalendarAlt, FaVideo } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import { API } from "../../api/api";
-import  axios  from 'axios';
+import axios from 'axios';
 
 const Consultant = () => {
-   const [consultants, setConsultants] = useState([]);
-   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [consultants, setConsultants] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-     /* Detect login state */
-     useEffect(() => {
-       const token = localStorage.getItem("token");
-       setIsLoggedIn(!!token);
-     }, []);
+  /* Detect login state */
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
-   const fetchConsultants = async () => {
+  const fetchConsultants = async () => {
     try {
       const res = await axios.get(`${API}/api/therapist/all`);
       setConsultants(res.data.therapists);
@@ -27,6 +29,16 @@ const Consultant = () => {
   useEffect(() => {
     fetchConsultants();
   }, []);
+
+  /* Handle booking */
+  const handleBooking = (consultantId) => {
+    if (!isLoggedIn) {
+      alert("Please login to continue booking.");
+      return;
+    }
+
+    navigate(`/booking/${consultantId}`);
+  };
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-14">
@@ -76,7 +88,14 @@ const Consultant = () => {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-              <button className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg flex items-center justify-center gap-2">
+              <button
+                onClick={() => handleBooking(doc._id)}
+                className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 text-white
+                ${isLoggedIn
+                    ? "bg-emerald-600 hover:bg-emerald-700"
+                    : "bg-gray-400 cursor-not-allowed"
+                  }`}
+              >
                 <FaCalendarAlt />
                 Book
               </button>

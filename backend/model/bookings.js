@@ -41,10 +41,12 @@ const bookingSchema = new mongoose.Schema({
         default: 'free'
     },
 
-    meetingLink: {
-        type: String
+     // Only used for WebRTC calls
+    roomId: {
+        type: String,
+        default: null
     },
-
+    
     status: {
         type: String,
         enum: ['pending', 'confirmed', 'completed', 'cancelled'],
