@@ -40,11 +40,13 @@ app.use(express.json());
 const userRoutes = require('./routes/user');
 const assessmentRoutes = require('./routes/assessment');
 const assessmentAnalytics = require('./routes/assessmentAnalytics');
+const therapistRoutes = require('./routes/Therapist');
 
 // Use Routes
 app.use("/api/user", userRoutes);
 app.use("/api/assessment", assessmentRoutes);
 app.use("/api/analytics", assessmentAnalytics);
+app.use("/api/therapist", therapistRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 3000;

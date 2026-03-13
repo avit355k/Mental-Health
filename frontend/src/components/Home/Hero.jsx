@@ -6,7 +6,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-emerald-50 to-white">
+    <section className="relative w-full `bg-gradient-to-b` from-emerald-50 to-white">
       <div className="max-w-7xl mx-auto px-6 py-24 text-center">
 
         {/* Badge */}

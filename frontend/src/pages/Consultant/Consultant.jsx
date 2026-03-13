@@ -1,55 +1,33 @@
 import React from "react";
-import { FaStar, FaCalendarAlt, FaVideo, FaPhoneAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { FaStar, FaCalendarAlt, FaVideo } from "react-icons/fa";
 
-const consultants = [
-  {
-    name: "Dr. Sarah Johnson",
-    specialization: "Clinical Psychology",
-    description:
-      "Specializing in anxiety, depression, and stress management with over 15 years of experience.",
-    experience: "15 years exp.",
-    price: "$120/session",
-    rating: 4.9,
-  },
-  {
-    name: "Dr. Michael Chen",
-    specialization: "Cognitive Behavioral Therapy",
-    description:
-      "Expert in CBT techniques for treating anxiety disorders, OCD, and phobias.",
-    experience: "12 years exp.",
-    price: "$100/session",
-    rating: 4.8,
-  },
-  {
-    name: "Dr. Emily Rodriguez",
-    specialization: "Trauma & PTSD",
-    description:
-      "Compassionate therapist specializing in trauma recovery and EMDR therapy.",
-    experience: "10 years exp.",
-    price: "$110/session",
-    rating: 4.7,
-  },
-  {
-    name: "Dr. James Williams",
-    specialization: "Addiction Counseling",
-    description:
-      "Dedicated to helping individuals overcome substance dependency and addiction.",
-    experience: "14 years exp.",
-    price: "$105/session",
-    rating: 4.9,
-  },
-  {
-    name: "Dr. Priya Patel",
-    specialization: "Child & Adolescent Psychology",
-    description:
-      "Warm and caring approach to helping young minds grow emotionally strong.",
-    experience: "9 years exp.",
-    price: "$95/session",
-    rating: 4.8,
-  },
-];
+import { API } from "../../api/api";
+import  axios  from 'axios';
 
 const Consultant = () => {
+   const [consultants, setConsultants] = useState([]);
+   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+     /* Detect login state */
+     useEffect(() => {
+       const token = localStorage.getItem("token");
+       setIsLoggedIn(!!token);
+     }, []);
+
+   const fetchConsultants = async () => {
+    try {
+      const res = await axios.get(`${API}/api/therapist/all`);
+      setConsultants(res.data.therapists);
+    } catch (error) {
+      console.error("Error fetching consultants:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchConsultants();
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto px-6 py-14">
       {/* Heading */}
@@ -64,9 +42,9 @@ const Consultant = () => {
 
       {/* Cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {consultants.map((doc, index) => (
+        {consultants.map((doc) => (
           <div
-            key={index}
+            key={doc._id}
             className="bg-white rounded-xl border shadow-sm p-6 flex flex-col justify-between hover:shadow-md transition"
           >
             {/* Top */}
@@ -86,14 +64,14 @@ const Consultant = () => {
               </p>
 
               <p className="text-sm text-gray-500 mb-5">
-                {doc.description}
+                {doc.bio}
               </p>
             </div>
 
             {/* Info */}
             <div className="flex justify-between items-center text-sm mb-5">
-              <span className="text-gray-600">{doc.experience}</span>
-              <span className="font-semibold">{doc.price}</span>
+              <span className="text-gray-600">{doc.experience} years exp.</span>
+              <span className="font-semibold">₹{doc.pricePerSession}/session</span>
             </div>
 
             {/* Actions */}
@@ -107,9 +85,7 @@ const Consultant = () => {
                 <FaVideo />
               </button>
 
-              <button className="border rounded-lg p-2 hover:bg-gray-100">
-                <FaPhoneAlt />
-              </button>
+
             </div>
           </div>
         ))}
