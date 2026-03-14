@@ -26,6 +26,7 @@ const LoginForm = () => {
 
       // Optional: save token
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       // Navigate to home page
       navigate("/");

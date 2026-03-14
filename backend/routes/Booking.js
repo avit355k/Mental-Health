@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Booking = require("../model/booking");
+const Booking = require("../model/bookings");
 const Therapist = require("../model/therapist");
 const User = require("../model/user");
 
@@ -30,7 +30,7 @@ router.post("/create", async (req, res) => {
             });
         }
 
-        // FIND SLOT
+        // Find Slot
         const slotDate = therapistData.availableSlots.find(
             slot => slot.date.toISOString().split("T")[0] === sessionDate
         );
@@ -164,35 +164,8 @@ router.get("/therapist/:therapistId", async (req, res) => {
     }
 });
 
-// GET SINGLE BOOKING
-router.get("/:id", async (req, res) => {
-    try {
 
-        const booking = await Booking.findById(req.params.id)
-            .populate("user", "name email")
-            .populate("therapist");
 
-        if (!booking) {
-            return res.status(404).json({
-                success: false,
-                message: "Booking not found"
-            });
-        }
-
-        res.status(200).json({
-            success: true,
-            booking
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-
-    }
-});
 // start video call (only for online sessions)
 router.get("/:id/start-call", async (req, res) => {
 
@@ -261,29 +234,29 @@ router.get("/:id/start-call", async (req, res) => {
 
 // UPDATE BOOKING STATUS
 router.patch("/:id/status", async (req, res) => {
-    try {
+  try {
 
-        const { status } = req.body;
+    const { status, paymentStatus } = req.body;
 
-        const booking = await Booking.findByIdAndUpdate(
-            req.params.id,
-            { status },
-            { new: true }
-        );
+    const booking = await Booking.findByIdAndUpdate(
+      req.params.id,
+      { status, paymentStatus },
+      { new: true }
+    );
 
-        res.status(200).json({
-            success: true,
-            booking
-        });
+    res.status(200).json({
+      success: true,
+      booking
+    });
 
-    } catch (error) {
+  } catch (error) {
 
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
 
-    }
+  }
 });
 
 // CANCEL BOOKING
@@ -336,4 +309,33 @@ router.delete("/:id", async (req, res) => {
     }
 });
 
+// GET SINGLE BOOKING
+router.get("/:id", async (req, res) => {
+    try {
+
+        const booking = await Booking.findById(req.params.id)
+            .populate("user", "name email")
+            .populate("therapist");
+
+        if (!booking) {
+            return res.status(404).json({
+                success: false,
+                message: "Booking not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            booking
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+});
 module.exports = router;

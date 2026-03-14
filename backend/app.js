@@ -41,12 +41,16 @@ const userRoutes = require('./routes/user');
 const assessmentRoutes = require('./routes/assessment');
 const assessmentAnalytics = require('./routes/assessmentAnalytics');
 const therapistRoutes = require('./routes/Therapist');
+const bookingRoutes = require('./routes/Booking');
 
 // Use Routes
 app.use("/api/user", userRoutes);
 app.use("/api/assessment", assessmentRoutes);
 app.use("/api/analytics", assessmentAnalytics);
+app.use("/api/booking", bookingRoutes);
 app.use("/api/therapist", therapistRoutes);
+
+
 
 // Start Server
 const PORT = process.env.PORT || 3000;

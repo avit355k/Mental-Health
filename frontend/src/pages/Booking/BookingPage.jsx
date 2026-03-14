@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API } from "../../api/api";
-import { useParams } from "react-router-dom";
+
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
@@ -10,6 +11,7 @@ import { FaVideo, FaClinicMedical } from "react-icons/fa";
 const BookingPage = () => {
 
     const { consultantId } = useParams();
+    const navigate = useNavigate();
 
     const [consultant, setConsultant] = useState(null);
     const [slots, setSlots] = useState([]);
@@ -66,25 +68,68 @@ const BookingPage = () => {
 
     const handleBooking = async () => {
 
-        if (!selectedTime) {
-            alert("Please select time");
+        if (!selectedDate || !selectedTime) {
+            alert("Please select date and time");
             return;
         }
 
-        const token = localStorage.getItem("token");
+        try {
 
-        await axios.post(`${API}/api/booking/create`, {
+            const token = localStorage.getItem("token");
+            const user = JSON.parse(localStorage.getItem("user"));
+            
 
-            therapistId: consultantId,
-            mode,
-            date: format(selectedDate, "yyyy-MM-dd"),
-            time: selectedTime
+            const res = await axios.post(
+                `${API}/api/booking/create`,
+                {
+                    user: user.id,
+                    therapist: consultantId,
+                    sessionType: mode,
+                    sessionDate: format(selectedDate, "yyyy-MM-dd"),
+                    sessionTime: selectedTime
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
 
-        }, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
+            const booking = res.data.booking;
 
-        alert("Booking confirmed");
+            /* Payment logic */
+
+            if (mode === "offline") {
+
+                await axios.patch(
+                    `${API}/api/booking/${booking._id}/status`,
+                    {
+                        status: "confirmed",
+                        paymentStatus: "paid"
+                    }
+                );
+
+            } else {
+
+                await axios.patch(
+                    `${API}/api/booking/${booking._id}/status`,
+                    {
+                        status: "confirmed",
+                        paymentStatus: "free"
+                    }
+                );
+
+            }
+
+            alert("Booking Confirmed");
+
+            navigate("/profile");
+
+        } catch (error) {
+
+            alert(error.response?.data?.message || "Booking failed");
+
+        }
 
     };
 
@@ -93,7 +138,7 @@ const BookingPage = () => {
     return (
 
         <section className="max-w-6xl mx-auto p-6">
-             {/* Therapist Info */}
+            {/* Therapist Info */}
             <div className="bg-white border rounded-xl p-6 shadow-sm mb-8">
                 <h2 className="text-2xl font-bold">{consultant.name}</h2>
                 <p className="text-gray-500">{consultant.specialization}</p>
@@ -140,9 +185,7 @@ const BookingPage = () => {
 
             </div>
 
-
             {/* Calendar + Slots */}
-
             <div className="grid md:grid-cols-2 gap-10 bg-white p-6 rounded-xl shadow">
 
                 {/* Calendar */}
@@ -218,7 +261,7 @@ const BookingPage = () => {
 
                         <button
                             onClick={handleBooking}
-                            className="mt-6 w-full bg-green-600 text-white py-3 rounded-lg"
+                            className="mt-6 w-full bg-green-600 text-white py-3 rounded-lg cursor-pointer"
                         >
 
                             Confirm Booking at {selectedTime}
