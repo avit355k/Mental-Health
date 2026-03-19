@@ -90,7 +90,7 @@ const Consultant = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => handleBooking(doc._id)}
-                className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 text-white
+                className={`flex-1 py-2 rounded-lg flex items-center justify-center gap-2 text-white cursor-pointer
                 ${isLoggedIn
                     ? "bg-emerald-600 hover:bg-emerald-700"
                     : "bg-gray-400 cursor-not-allowed"

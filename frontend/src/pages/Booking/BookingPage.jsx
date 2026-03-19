@@ -163,7 +163,7 @@ const BookingPage = () => {
 
                 <button
                     onClick={() => setMode("online")}
-                    className={`px-4 py-2 rounded-lg flex items-center gap-2
+                    className={`px-4 py-2 rounded-lg flex items-center gap-2 cursor-pointer
                               ${mode === "online"
                             ? "bg-green-600 text-white"
                             : "border hover:bg-gray-100"
@@ -174,7 +174,7 @@ const BookingPage = () => {
 
                 <button
                     onClick={() => setMode("offline")}
-                    className={`px-4 py-2 rounded-lg flex items-center gap-2
+                    className={`px-4 py-2 rounded-lg flex items-center gap-2 cursor-pointer
                               ${mode === "offline"
                             ? "bg-green-600 text-white"
                             : "border hover:bg-gray-100"
@@ -241,7 +241,7 @@ const BookingPage = () => {
                                             : isSelected
                                                 ? "bg-blue-600 text-white"
 
-                                                : "border-blue-500 text-blue-600 hover:bg-blue-50"
+                                                : "border-blue-500 text-blue-600 hover:bg-blue-50 cursor-pointer"
                                         }
 
 `}

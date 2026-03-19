@@ -125,7 +125,8 @@ router.get("/user/:userId", async (req, res) => {
     try {
 
         const bookings = await Booking.find({ user: req.params.userId })
-            .populate("therapist");
+            .populate("therapist")
+            .populate("user", "name email");
 
         res.status(200).json({
             success: true,
@@ -143,93 +144,125 @@ router.get("/user/:userId", async (req, res) => {
 });
 
 // GET BOOKINGS BY THERAPIST
-router.get("/therapist/:therapistId", async (req, res) => {
-    try {
+router.get("/therapist/:userId", async (req, res) => {
+  try {
 
-        const bookings = await Booking.find({ therapist: req.params.therapistId })
-            .populate("user", "name email avatar");
+    // find therapist profile using user id
+    const therapist = await Therapist.findOne({ user: req.params.userId });
 
-        res.status(200).json({
-            success: true,
-            bookings
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-
+    if (!therapist) {
+      return res.status(404).json({
+        success: false,
+        message: "Therapist profile not found"
+      });
     }
+
+    const bookings = await Booking.find({ therapist: therapist._id })
+      .populate("user", "name email avatar")
+      .populate({
+        path: "therapist",
+        populate: {
+          path: "user",
+          select: "name email avatar"
+        }
+      });
+
+    res.status(200).json({
+      success: true,
+      bookings
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+
+  }
 });
-
-
 
 // start video call (only for online sessions)
 router.get("/:id/start-call", async (req, res) => {
+  try {
 
-    try {
-
-        const booking = await Booking.findById(req.params.id)
-        .populate("user", "name email")
-        .populate("therapist");
-
-        if (!booking) {
-            return res.status(404).json({
-                success:false,
-                message:"Booking not found"
-            });
+    const booking = await Booking.findById(req.params.id)
+      .populate("user", "name email")
+      .populate({
+        path: "therapist",
+        populate: {
+          path: "user",
+          select: "name email"
         }
+      });
 
-        // Allow video call only for online session
-        if (booking.sessionType !== "online") {
-            return res.status(400).json({
-                success:false,
-                message:"Video call allowed only for online sessions"
-            });
-        }
-
-        if (booking.status === "cancelled") {
-            return res.status(400).json({
-                success:false,
-                message:"Session has been cancelled"
-            });
-        }
-
-        // Convert session date + time to Date object
-        const sessionStart = new Date(
-            `${booking.sessionDate.toISOString().split("T")[0]} ${booking.sessionTime}`
-        );
-
-        const now = new Date();
-
-        // Allow joining 10 minutes early
-        const allowJoinTime = new Date(sessionStart.getTime() - (10 * 60 * 1000));
-
-        if (now < allowJoinTime) {
-            return res.status(400).json({
-                success:false,
-                message:"Session has not started yet",
-                allowedJoinTime: allowJoinTime
-            });
-        }
-
-        res.status(200).json({
-            success:true,
-            message:"Join session",
-            roomId: booking.roomId
-        });
-
-    } catch (error) {
-
-        res.status(500).json({
-            success:false,
-            message:error.message
-        });
-
+    if (!booking) {
+      return res.status(404).json({
+        success:false,
+        message:"Booking not found"
+      });
     }
 
+    if (booking.sessionType !== "online") {
+      return res.status(400).json({
+        success:false,
+        message:"Video call only for online sessions"
+      });
+    }
+
+    if (booking.status === "cancelled") {
+      return res.status(400).json({
+        success:false,
+        message:"Session cancelled"
+      });
+    }
+
+    // build session start time
+    const sessionStart = new Date(
+      `${booking.sessionDate.toISOString().split("T")[0]} ${booking.sessionTime}`
+    );
+
+    const sessionEnd = new Date(
+      sessionStart.getTime() + booking.duration * 60 * 1000
+    );
+
+    const now = new Date();
+
+    const joinEarly = new Date(sessionStart.getTime() - 10 * 60 * 1000);
+
+    if (now < joinEarly) {
+      return res.status(400).json({
+        success:false,
+        status:"waiting",
+        message:"Session not started yet",
+        joinTime: joinEarly
+      });
+    }
+
+    if (now > sessionEnd) {
+      return res.status(400).json({
+        success:false,
+        status:"expired",
+        message:"Session has ended"
+      });
+    }
+
+    res.status(200).json({
+      success:true,
+      status:"live",
+      message:"Join session",
+      roomId: booking.roomId,
+      sessionEnd
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success:false,
+      message:error.message
+    });
+
+  }
 });
 
 // UPDATE BOOKING STATUS

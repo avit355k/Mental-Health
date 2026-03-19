@@ -63,9 +63,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200 transition-shadow ${
-        scrolled ? "shadow-md" : "shadow-none"
-      }`}
+      className={`w-full sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-gray-200 transition-shadow ${scrolled ? "shadow-md" : "shadow-none"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
@@ -83,11 +82,10 @@ const Navbar = () => {
             <div key={link.name} className="relative group">
               <Link
                 to={link.path}
-                className={`font-medium transition-colors ${
-                  location.pathname === link.path
-                    ? "text-emerald-600"
-                    : "text-gray-700 hover:text-emerald-600"
-                }`}
+                className={`font-medium transition-colors ${location.pathname === link.path
+                  ? "text-emerald-600"
+                  : "text-gray-700 hover:text-emerald-600"
+                  }`}
               >
                 {link.name}
               </Link>
@@ -135,6 +133,13 @@ const Navbar = () => {
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
                   >
                     Profile
+                  </Link>
+
+                  <Link
+                    to="/my-booking"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                  >
+                    My Booking
                   </Link>
 
                   <Link
@@ -224,6 +229,13 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Profile
+              </Link>
+
+              <Link
+                to="/my-booking"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+              >
+                My Booking
               </Link>
 
               <Link

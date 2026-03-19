@@ -19,6 +19,8 @@ import ArticleDetails from './components/Resoources/ArticleDetails';
 import GuidedSession from './pages/Resources/GuidedSession';
 import Consultant from './pages/Consultant/Consultant';
 import BookingPage from './pages/Booking/BookingPage';
+import MyBooking from './pages/MyBooking/MyBooking';
+import VideoCall from './pages/VideoCall/VideoCall';
 
 
 const App = () => {
@@ -41,6 +43,8 @@ const App = () => {
         <Route path='/resources/guided-sessions' exact={true} element={<GuidedSession />} />
         <Route path='/consultants' exact={true} element={<Consultant />} />
         <Route path="/booking/:consultantId" element={<BookingPage />} />
+        <Route path='/my-booking' exact={true} element={<MyBooking />} />
+        <Route path="/video-call/:roomId" element={<VideoCall />} />
         <Route path='/profile' exact={true} element={<Profile />} />
         <Route path='/dashboard' exact={true} element={<Dashboard />} />
       </Routes>

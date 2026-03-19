@@ -41,12 +41,15 @@ const bookingSchema = new mongoose.Schema({
         default: 'free'
     },
 
-     // Only used for WebRTC calls
+    // Only used for WebRTC calls
     roomId: {
         type: String,
         default: null
     },
-    
+    duration: {
+        type: Number,
+        default: 60 // minutes
+    },
     status: {
         type: String,
         enum: ['pending', 'confirmed', 'completed', 'cancelled'],
