@@ -46,6 +46,7 @@ const assessmentRoutes = require('./routes/assessment');
 const assessmentAnalytics = require('./routes/assessmentAnalytics');
 const therapistRoutes = require('./routes/Therapist');
 const bookingRoutes = require('./routes/Booking');
+const chatRoutes = require('./routes/chat');
 
 // Use Routes
 app.use("/api/user", userRoutes);
@@ -53,6 +54,7 @@ app.use("/api/assessment", assessmentRoutes);
 app.use("/api/analytics", assessmentAnalytics);
 app.use("/api/booking", bookingRoutes);
 app.use("/api/therapist", therapistRoutes);
+app.use("/api/chatbot", chatRoutes);
 
 const server = http.createServer(app);
 

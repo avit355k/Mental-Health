@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaRobot, FaPaperPlane } from "react-icons/fa";
+import { API } from "../../api/api";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
@@ -11,10 +12,10 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 🔹 Auto-scroll reference
+  //  Auto-scroll reference
   const messagesEndRef = useRef(null);
 
-  // 🔹 Crisis keywords
+  //  Crisis keywords
   const crisisKeywords = [
     "suicide",
     "kill myself",
@@ -30,7 +31,7 @@ const Chatbot = () => {
       text.toLowerCase().includes(word)
     );
 
-  // 🔹 Auto-scroll effect
+  // Auto-scroll effect
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -39,7 +40,7 @@ const Chatbot = () => {
   }, [messages]);
 
 
-  // 🔹 Send message
+  // Send message
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -51,7 +52,7 @@ const Chatbot = () => {
     ]);
     setInput("");
 
-    // 🚨 Crisis detection (client-side safety)
+    // Crisis detection (client-side safety)
     if (isCrisisMessage(userText)) {
       setMessages((prev) => [
         ...prev,
