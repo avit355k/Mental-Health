@@ -69,7 +69,7 @@ const Chatbot = () => {
 
     try {
       const res = await fetch(
-        "http://127.0.0.1:5000/chatbot",
+        `${API}/api/chatbot`,
         {
           method: "POST",
           headers: {
